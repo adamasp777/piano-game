@@ -79,6 +79,8 @@
   }
 
   // --- Song select population ---
+  var currentFilter = 'All';
+
   function populateSongList() {
     var container = document.getElementById('song-list');
     container.innerHTML = '';
@@ -92,10 +94,6 @@
         '<div class="song-artist">Load an MP3 or audio file</div>' +
       '</div>' +
       '<span class="diff-import">+</span>';
-    importCard.addEventListener('touchstart', function (e) {
-      e.preventDefault();
-      document.getElementById('file-input').click();
-    }, { passive: false });
     importCard.addEventListener('click', function () {
       document.getElementById('file-input').click();
     });
@@ -104,6 +102,7 @@
     var songs = Songs.list;
     for (var i = 0; i < songs.length; i++) {
       (function (song) {
+        if (currentFilter !== 'All' && song.difficulty !== currentFilter) return;
         var card = document.createElement('button');
         card.className = 'song-card';
         card.innerHTML =
@@ -112,10 +111,27 @@
             '<div class="song-artist">' + song.artist + '</div>' +
           '</div>' +
           '<span class="song-difficulty diff-' + song.difficulty + '">' + song.difficulty + '</span>';
-        card.addEventListener('touchstart', function (e) { e.preventDefault(); startSong(song); }, { passive: false });
         card.addEventListener('click', function () { startSong(song); });
         container.appendChild(card);
       })(songs[i]);
+    }
+
+    container.scrollTop = 0;
+  }
+
+  function initFilterTabs() {
+    var tabs = document.querySelectorAll('.filter-tab');
+    for (var i = 0; i < tabs.length; i++) {
+      (function (tab) {
+        tab.addEventListener('click', function () {
+          for (var j = 0; j < tabs.length; j++) {
+            tabs[j].classList.remove('active');
+          }
+          tab.classList.add('active');
+          currentFilter = tab.getAttribute('data-filter');
+          populateSongList();
+        });
+      })(tabs[i]);
     }
   }
 
@@ -675,6 +691,7 @@
 
     initCanvas();
     populateSongList();
+    initFilterTabs();
     setupInput();
 
     // Button handlers

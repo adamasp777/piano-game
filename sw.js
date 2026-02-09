@@ -1,4 +1,4 @@
-var CACHE_NAME = 'piano-keys-v4';
+var CACHE_NAME = 'piano-keys-v5';
 var ASSETS = [
   './',
   './index.html',

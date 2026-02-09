@@ -120,20 +120,76 @@ html, body {
 /* Song Select */
 #select-screen {
   background: var(--bg-panel);
+  justify-content: flex-start;
+  padding-top: 30px;
 }
 
 .screen-title {
   font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+/* Difficulty filter tabs */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.filter-tab {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter-tab:active {
+  transform: scale(0.95);
+}
+
+.filter-tab.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
 }
 
 .song-list {
   width: 90%;
   max-width: 360px;
-  max-height: 60vh;
+  flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   padding-right: 4px;
+  padding-bottom: 10px;
+}
+
+/* Visible scrollbar on song list */
+.song-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.song-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+  background: rgba(155, 89, 182, 0.4);
+  border-radius: 3px;
+}
+
+.song-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(155, 89, 182, 0.6);
 }
 
 .song-card {
