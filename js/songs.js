@@ -5,6 +5,82 @@
   // Lanes roughly map to pitch ranges for visual consistency
 
   var songs = [
+
+    // ========== EASY ==========
+
+    {
+      id: 'hotcross',
+      title: 'Hot Cross Buns',
+      artist: 'Traditional',
+      bpm: 110,
+      difficulty: 'Easy',
+      duration: 12,
+      notes: [
+        // Hot Cross Buns
+        { time: 0.6, lane: 1, note: 'E4' },
+        { time: 1.1, lane: 0, note: 'D4' },
+        { time: 1.6, lane: 0, note: 'C4' },
+        // Hot Cross Buns
+        { time: 2.7, lane: 1, note: 'E4' },
+        { time: 3.2, lane: 0, note: 'D4' },
+        { time: 3.7, lane: 0, note: 'C4' },
+        // One a penny two a penny
+        { time: 4.8, lane: 0, note: 'C4' },
+        { time: 5.1, lane: 0, note: 'C4' },
+        { time: 5.4, lane: 0, note: 'C4' },
+        { time: 5.7, lane: 0, note: 'C4' },
+        { time: 6.2, lane: 0, note: 'D4' },
+        { time: 6.5, lane: 0, note: 'D4' },
+        { time: 6.8, lane: 0, note: 'D4' },
+        { time: 7.1, lane: 0, note: 'D4' },
+        // Hot Cross Buns
+        { time: 8.2, lane: 1, note: 'E4' },
+        { time: 8.7, lane: 0, note: 'D4' },
+        { time: 9.2, lane: 0, note: 'C4' }
+      ]
+    },
+
+    {
+      id: 'mary',
+      title: 'Mary Had a Little Lamb',
+      artist: 'Traditional',
+      bpm: 120,
+      difficulty: 'Easy',
+      duration: 16,
+      notes: [
+        // Mary had a little lamb
+        { time: 0.5, lane: 1, note: 'E4' },
+        { time: 1.0, lane: 0, note: 'D4' },
+        { time: 1.5, lane: 0, note: 'C4' },
+        { time: 2.0, lane: 0, note: 'D4' },
+        { time: 2.5, lane: 1, note: 'E4' },
+        { time: 3.0, lane: 1, note: 'E4' },
+        { time: 3.5, lane: 1, note: 'E4' },
+        // Little lamb, little lamb
+        { time: 4.5, lane: 0, note: 'D4' },
+        { time: 5.0, lane: 0, note: 'D4' },
+        { time: 5.5, lane: 0, note: 'D4' },
+        { time: 6.5, lane: 1, note: 'E4' },
+        { time: 7.0, lane: 2, note: 'G4' },
+        { time: 7.5, lane: 2, note: 'G4' },
+        // Mary had a little lamb (reprise)
+        { time: 8.5, lane: 1, note: 'E4' },
+        { time: 9.0, lane: 0, note: 'D4' },
+        { time: 9.5, lane: 0, note: 'C4' },
+        { time: 10.0, lane: 0, note: 'D4' },
+        { time: 10.5, lane: 1, note: 'E4' },
+        { time: 11.0, lane: 1, note: 'E4' },
+        { time: 11.5, lane: 1, note: 'E4' },
+        { time: 12.0, lane: 1, note: 'E4' },
+        // Its fleece was white as snow
+        { time: 12.5, lane: 0, note: 'D4' },
+        { time: 13.0, lane: 0, note: 'D4' },
+        { time: 13.5, lane: 1, note: 'E4' },
+        { time: 14.0, lane: 0, note: 'D4' },
+        { time: 14.5, lane: 0, note: 'C4' }
+      ]
+    },
+
     {
       id: 'twinkle',
       title: 'Twinkle Twinkle Little Star',
@@ -63,6 +139,238 @@
         { time: 28.2, lane: 0, note: 'C4' }
       ]
     },
+
+    {
+      id: 'london',
+      title: 'London Bridge',
+      artist: 'Traditional',
+      bpm: 120,
+      difficulty: 'Easy',
+      duration: 16,
+      notes: [
+        // London Bridge is falling down
+        { time: 0.5, lane: 2, note: 'G4' },
+        { time: 1.0, lane: 3, note: 'A4' },
+        { time: 1.5, lane: 2, note: 'G4' },
+        { time: 2.0, lane: 1, note: 'F4' },
+        { time: 2.5, lane: 1, note: 'E4' },
+        { time: 3.0, lane: 1, note: 'F4' },
+        { time: 3.5, lane: 2, note: 'G4' },
+        // Falling down
+        { time: 4.5, lane: 0, note: 'D4' },
+        { time: 5.0, lane: 1, note: 'E4' },
+        { time: 5.5, lane: 1, note: 'F4' },
+        // Falling down
+        { time: 6.5, lane: 1, note: 'E4' },
+        { time: 7.0, lane: 1, note: 'F4' },
+        { time: 7.5, lane: 2, note: 'G4' },
+        // London Bridge is falling down
+        { time: 8.5, lane: 2, note: 'G4' },
+        { time: 9.0, lane: 3, note: 'A4' },
+        { time: 9.5, lane: 2, note: 'G4' },
+        { time: 10.0, lane: 1, note: 'F4' },
+        { time: 10.5, lane: 1, note: 'E4' },
+        { time: 11.0, lane: 1, note: 'F4' },
+        { time: 11.5, lane: 2, note: 'G4' },
+        // My fair lady
+        { time: 12.5, lane: 0, note: 'D4' },
+        { time: 13.5, lane: 2, note: 'G4' },
+        { time: 14.0, lane: 1, note: 'E4' },
+        { time: 14.5, lane: 0, note: 'C4' }
+      ]
+    },
+
+    {
+      id: 'jingle',
+      title: 'Jingle Bells',
+      artist: 'Traditional',
+      bpm: 120,
+      difficulty: 'Easy',
+      duration: 24,
+      notes: [
+        // Jingle bells, jingle bells
+        { time: 0.5, lane: 1, note: 'E4' },
+        { time: 1.0, lane: 1, note: 'E4' },
+        { time: 1.5, lane: 1, note: 'E4' },
+        { time: 2.5, lane: 1, note: 'E4' },
+        { time: 3.0, lane: 1, note: 'E4' },
+        { time: 3.5, lane: 1, note: 'E4' },
+        // Jingle all the way
+        { time: 4.5, lane: 1, note: 'E4' },
+        { time: 5.0, lane: 2, note: 'G4' },
+        { time: 5.5, lane: 0, note: 'C4' },
+        { time: 6.0, lane: 0, note: 'D4' },
+        { time: 6.5, lane: 1, note: 'E4' },
+        // Oh what fun it is to ride
+        { time: 8.0, lane: 1, note: 'F4' },
+        { time: 8.5, lane: 1, note: 'F4' },
+        { time: 9.0, lane: 1, note: 'F4' },
+        { time: 9.5, lane: 1, note: 'F4' },
+        // In a one-horse open sleigh
+        { time: 10.0, lane: 1, note: 'F4' },
+        { time: 10.5, lane: 1, note: 'E4' },
+        { time: 11.0, lane: 1, note: 'E4' },
+        { time: 11.5, lane: 1, note: 'E4' },
+        { time: 12.0, lane: 1, note: 'E4' },
+        { time: 12.5, lane: 0, note: 'D4' },
+        { time: 13.0, lane: 0, note: 'D4' },
+        { time: 13.5, lane: 1, note: 'E4' },
+        { time: 14.0, lane: 0, note: 'D4' },
+        { time: 15.0, lane: 2, note: 'G4' },
+        // Repeat: Jingle bells, jingle bells
+        { time: 16.0, lane: 1, note: 'E4' },
+        { time: 16.5, lane: 1, note: 'E4' },
+        { time: 17.0, lane: 1, note: 'E4' },
+        { time: 18.0, lane: 1, note: 'E4' },
+        { time: 18.5, lane: 1, note: 'E4' },
+        { time: 19.0, lane: 1, note: 'E4' },
+        // Jingle all the way
+        { time: 20.0, lane: 1, note: 'E4' },
+        { time: 20.5, lane: 2, note: 'G4' },
+        { time: 21.0, lane: 0, note: 'C4' },
+        { time: 21.5, lane: 0, note: 'D4' },
+        { time: 22.0, lane: 1, note: 'E4' }
+      ]
+    },
+
+    // ========== MEDIUM ==========
+
+    {
+      id: 'grace',
+      title: 'Amazing Grace',
+      artist: 'Traditional',
+      bpm: 80,
+      difficulty: 'Medium',
+      duration: 30,
+      notes: [
+        // Amazing grace how sweet the sound
+        { time: 0.8, lane: 1, note: 'G3' },
+        { time: 1.5, lane: 0, note: 'C4' },
+        { time: 2.3, lane: 1, note: 'E4' },
+        { time: 2.7, lane: 0, note: 'C4' },
+        { time: 3.3, lane: 1, note: 'E4' },
+        { time: 4.1, lane: 0, note: 'D4' },
+        { time: 4.8, lane: 0, note: 'C4' },
+        // That saved a wretch like me
+        { time: 5.6, lane: 1, note: 'A3' },
+        { time: 6.3, lane: 1, note: 'G3' },
+        { time: 7.1, lane: 1, note: 'G3' },
+        { time: 7.8, lane: 0, note: 'C4' },
+        { time: 8.6, lane: 1, note: 'E4' },
+        { time: 9.0, lane: 0, note: 'C4' },
+        { time: 9.8, lane: 1, note: 'E4' },
+        // I once was lost but now am found
+        { time: 10.5, lane: 2, note: 'G4' },
+        { time: 11.3, lane: 1, note: 'E4' },
+        { time: 12.0, lane: 2, note: 'G4' },
+        { time: 12.5, lane: 1, note: 'E4' },
+        { time: 13.3, lane: 0, note: 'C4' },
+        { time: 14.0, lane: 0, note: 'D4' },
+        // Was blind but now I see
+        { time: 14.8, lane: 0, note: 'C4' },
+        { time: 15.5, lane: 1, note: 'A3' },
+        { time: 16.3, lane: 1, note: 'A3' },
+        { time: 17.0, lane: 0, note: 'C4' },
+        { time: 17.5, lane: 0, note: 'D4' },
+        { time: 18.3, lane: 0, note: 'D4' },
+        { time: 19.0, lane: 0, note: 'C4' }
+      ]
+    },
+
+    {
+      id: 'scarborough',
+      title: 'Scarborough Fair',
+      artist: 'Traditional',
+      bpm: 100,
+      difficulty: 'Medium',
+      duration: 28,
+      notes: [
+        // Are you going to Scarborough Fair
+        { time: 0.6, lane: 0, note: 'D4' },
+        { time: 1.8, lane: 0, note: 'D4' },
+        { time: 2.4, lane: 3, note: 'A4' },
+        { time: 3.0, lane: 3, note: 'A4' },
+        { time: 4.2, lane: 3, note: 'A4' },
+        { time: 4.8, lane: 2, note: 'G4' },
+        { time: 5.4, lane: 3, note: 'A4' },
+        { time: 6.0, lane: 3, note: 'B4' },
+        { time: 6.6, lane: 3, note: 'A4' },
+        // Parsley sage rosemary and thyme
+        { time: 8.4, lane: 0, note: 'D4' },
+        { time: 9.0, lane: 0, note: 'D4' },
+        { time: 9.6, lane: 0, note: 'D4' },
+        { time: 10.8, lane: 0, note: 'D4' },
+        { time: 11.4, lane: 0, note: 'C4' },
+        { time: 12.0, lane: 1, note: 'Bb3' },
+        { time: 12.6, lane: 1, note: 'A3' },
+        // Remember me to one who lives there
+        { time: 14.4, lane: 1, note: 'F4' },
+        { time: 15.0, lane: 1, note: 'E4' },
+        { time: 15.6, lane: 0, note: 'D4' },
+        { time: 16.2, lane: 1, note: 'E4' },
+        { time: 16.8, lane: 1, note: 'F4' },
+        { time: 17.4, lane: 1, note: 'E4' },
+        // She once was a true love of mine
+        { time: 18.6, lane: 0, note: 'D4' },
+        { time: 19.2, lane: 0, note: 'C4' },
+        { time: 20.4, lane: 1, note: 'A3' },
+        { time: 21.0, lane: 1, note: 'G3' },
+        { time: 21.6, lane: 1, note: 'A3' },
+        { time: 22.8, lane: 0, note: 'D4' }
+      ]
+    },
+
+    {
+      id: 'greensleeves',
+      title: 'Greensleeves',
+      artist: 'Traditional',
+      bpm: 130,
+      difficulty: 'Medium',
+      duration: 32,
+      notes: [
+        // Alas my love you do me wrong
+        { time: 0.5, lane: 1, note: 'A3' },
+        { time: 0.96, lane: 0, note: 'C4' },
+        { time: 1.42, lane: 0, note: 'D4' },
+        { time: 1.88, lane: 1, note: 'E4' },
+        { time: 2.11, lane: 1, note: 'F4' },
+        { time: 2.34, lane: 1, note: 'E4' },
+        { time: 2.80, lane: 0, note: 'D4' },
+        { time: 3.26, lane: 1, note: 'B3' },
+        { time: 3.72, lane: 1, note: 'G3' },
+        { time: 3.95, lane: 1, note: 'A3' },
+        { time: 4.18, lane: 1, note: 'B3' },
+        // To cast me off discourteously
+        { time: 4.64, lane: 0, note: 'C4' },
+        { time: 5.10, lane: 1, note: 'A3' },
+        { time: 5.56, lane: 1, note: 'A3' },
+        { time: 5.79, lane: 1, note: 'G#3' },
+        { time: 6.02, lane: 1, note: 'A3' },
+        { time: 6.48, lane: 1, note: 'B3' },
+        { time: 6.94, lane: 1, note: 'G#3' },
+        { time: 7.40, lane: 1, note: 'E3' },
+        // Greensleeves was all my joy
+        { time: 8.32, lane: 2, note: 'G4' },
+        { time: 8.78, lane: 2, note: 'G4' },
+        { time: 9.01, lane: 2, note: 'F#4' },
+        { time: 9.24, lane: 1, note: 'E4' },
+        { time: 9.70, lane: 0, note: 'D4' },
+        { time: 10.16, lane: 1, note: 'B3' },
+        { time: 10.62, lane: 1, note: 'G3' },
+        { time: 10.85, lane: 1, note: 'A3' },
+        { time: 11.08, lane: 1, note: 'B3' },
+        // Greensleeves was my delight
+        { time: 11.54, lane: 0, note: 'C4' },
+        { time: 12.00, lane: 1, note: 'A3' },
+        { time: 12.46, lane: 1, note: 'A3' },
+        { time: 12.69, lane: 1, note: 'G#3' },
+        { time: 12.92, lane: 1, note: 'A3' },
+        { time: 13.38, lane: 1, note: 'B3' },
+        { time: 13.84, lane: 1, note: 'G#3' },
+        { time: 14.30, lane: 1, note: 'E3' }
+      ]
+    },
+
     {
       id: 'ode',
       title: 'Ode to Joy',
@@ -143,6 +451,348 @@
         { time: 31.75, lane: 0, note: 'C4' }
       ]
     },
+
+    {
+      id: 'canon',
+      title: 'Canon in D',
+      artist: 'Pachelbel',
+      bpm: 100,
+      difficulty: 'Medium',
+      duration: 30,
+      notes: [
+        // Famous melody over the chord progression
+        { time: 0.6, lane: 2, note: 'F#4' },
+        { time: 0.9, lane: 1, note: 'E4' },
+        { time: 1.2, lane: 0, note: 'D4' },
+        { time: 1.5, lane: 0, note: 'Db4' },
+        { time: 1.8, lane: 0, note: 'D4' },
+        { time: 2.1, lane: 1, note: 'A3' },
+        { time: 2.4, lane: 1, note: 'B3' },
+        { time: 2.7, lane: 2, note: 'F#4' },
+        { time: 3.0, lane: 2, note: 'G4' },
+        { time: 3.3, lane: 0, note: 'D4' },
+        { time: 3.6, lane: 2, note: 'G4' },
+        { time: 3.9, lane: 2, note: 'F#4' },
+        { time: 4.2, lane: 1, note: 'E4' },
+        { time: 4.5, lane: 1, note: 'B3' },
+        { time: 4.8, lane: 0, note: 'Db4' },
+        { time: 5.1, lane: 0, note: 'D4' },
+        // Second pass - more ornamented
+        { time: 5.7, lane: 0, note: 'Db4' },
+        { time: 6.0, lane: 1, note: 'A3' },
+        { time: 6.3, lane: 1, note: 'B3' },
+        { time: 6.6, lane: 0, note: 'Db4' },
+        { time: 6.9, lane: 0, note: 'D4' },
+        { time: 7.2, lane: 2, note: 'F#4' },
+        { time: 7.5, lane: 3, note: 'A4' },
+        { time: 7.8, lane: 2, note: 'G4' },
+        { time: 8.1, lane: 2, note: 'F#4' },
+        { time: 8.4, lane: 0, note: 'D4' },
+        { time: 8.7, lane: 2, note: 'F#4' },
+        { time: 9.0, lane: 1, note: 'E4' },
+        { time: 9.3, lane: 0, note: 'D4' },
+        // Third pass - ascending runs
+        { time: 10.2, lane: 0, note: 'D4' },
+        { time: 10.5, lane: 1, note: 'E4' },
+        { time: 10.8, lane: 2, note: 'F#4' },
+        { time: 11.1, lane: 2, note: 'G4' },
+        { time: 11.4, lane: 3, note: 'A4' },
+        { time: 11.7, lane: 2, note: 'G4' },
+        { time: 12.0, lane: 2, note: 'F#4' },
+        { time: 12.3, lane: 1, note: 'E4' },
+        { time: 12.6, lane: 0, note: 'D4' },
+        { time: 12.9, lane: 1, note: 'B3' },
+        { time: 13.2, lane: 1, note: 'A3' },
+        { time: 13.5, lane: 1, note: 'B3' },
+        { time: 13.8, lane: 0, note: 'D4' },
+        { time: 14.1, lane: 2, note: 'F#4' },
+        { time: 14.4, lane: 3, note: 'A4' }
+      ]
+    },
+
+    {
+      id: 'sevennation',
+      title: 'Seven Nation Army',
+      artist: 'The White Stripes',
+      bpm: 124,
+      difficulty: 'Medium',
+      duration: 24,
+      notes: [
+        // Riff 1
+        { time: 0.5, lane: 1, note: 'E4' },
+        { time: 1.0, lane: 1, note: 'E4' },
+        { time: 1.5, lane: 2, note: 'G4' },
+        { time: 2.0, lane: 1, note: 'E4' },
+        { time: 2.5, lane: 0, note: 'D4' },
+        { time: 3.0, lane: 0, note: 'C4' },
+        { time: 4.0, lane: 1, note: 'B3' },
+        // Riff 2
+        { time: 5.5, lane: 1, note: 'E4' },
+        { time: 6.0, lane: 1, note: 'E4' },
+        { time: 6.5, lane: 2, note: 'G4' },
+        { time: 7.0, lane: 1, note: 'E4' },
+        { time: 7.5, lane: 0, note: 'D4' },
+        { time: 8.0, lane: 0, note: 'C4' },
+        { time: 9.0, lane: 1, note: 'B3' },
+        // Riff 3
+        { time: 10.5, lane: 1, note: 'E4' },
+        { time: 11.0, lane: 1, note: 'E4' },
+        { time: 11.5, lane: 2, note: 'G4' },
+        { time: 12.0, lane: 1, note: 'E4' },
+        { time: 12.5, lane: 0, note: 'D4' },
+        { time: 13.0, lane: 0, note: 'C4' },
+        { time: 14.0, lane: 0, note: 'D4' },
+        // Riff 4 (variation)
+        { time: 15.5, lane: 1, note: 'E4' },
+        { time: 16.0, lane: 1, note: 'E4' },
+        { time: 16.5, lane: 2, note: 'G4' },
+        { time: 17.0, lane: 1, note: 'E4' },
+        { time: 17.5, lane: 0, note: 'D4' },
+        { time: 18.0, lane: 0, note: 'C4' },
+        { time: 19.0, lane: 1, note: 'B3' },
+        // Riff 5
+        { time: 20.5, lane: 1, note: 'E4' },
+        { time: 21.0, lane: 1, note: 'E4' },
+        { time: 21.5, lane: 2, note: 'G4' },
+        { time: 22.0, lane: 1, note: 'E4' },
+        { time: 22.5, lane: 0, note: 'D4' },
+        { time: 23.0, lane: 0, note: 'C4' }
+      ]
+    },
+
+    {
+      id: 'imperial',
+      title: 'Imperial March',
+      artist: 'John Williams',
+      bpm: 104,
+      difficulty: 'Medium',
+      duration: 24,
+      notes: [
+        // Main theme
+        { time: 0.6, lane: 1, note: 'G3' },
+        { time: 1.2, lane: 1, note: 'G3' },
+        { time: 1.8, lane: 1, note: 'G3' },
+        { time: 2.2, lane: 0, note: 'Eb3' },
+        { time: 2.6, lane: 1, note: 'Bb3' },
+        { time: 3.0, lane: 1, note: 'G3' },
+        { time: 3.4, lane: 0, note: 'Eb3' },
+        { time: 3.8, lane: 1, note: 'Bb3' },
+        { time: 4.4, lane: 1, note: 'G3' },
+        // Second phrase (up)
+        { time: 5.6, lane: 0, note: 'D4' },
+        { time: 6.2, lane: 0, note: 'D4' },
+        { time: 6.8, lane: 0, note: 'D4' },
+        { time: 7.2, lane: 1, note: 'Eb4' },
+        { time: 7.6, lane: 1, note: 'Bb3' },
+        { time: 8.0, lane: 1, note: 'G3' },
+        { time: 8.4, lane: 0, note: 'Eb3' },
+        { time: 8.8, lane: 1, note: 'Bb3' },
+        { time: 9.4, lane: 1, note: 'G3' },
+        // Repeat main theme
+        { time: 10.6, lane: 1, note: 'G3' },
+        { time: 11.2, lane: 1, note: 'G3' },
+        { time: 11.8, lane: 1, note: 'G3' },
+        { time: 12.2, lane: 0, note: 'Eb3' },
+        { time: 12.6, lane: 1, note: 'Bb3' },
+        { time: 13.0, lane: 1, note: 'G3' },
+        { time: 13.4, lane: 0, note: 'Eb3' },
+        { time: 13.8, lane: 1, note: 'Bb3' },
+        { time: 14.4, lane: 1, note: 'G3' },
+        // Climax
+        { time: 15.6, lane: 2, note: 'G4' },
+        { time: 16.2, lane: 1, note: 'G3' },
+        { time: 16.5, lane: 1, note: 'G3' },
+        { time: 17.0, lane: 2, note: 'G4' },
+        { time: 17.4, lane: 2, note: 'F#4' },
+        { time: 17.8, lane: 1, note: 'F4' },
+        { time: 18.1, lane: 1, note: 'E4' },
+        { time: 18.4, lane: 1, note: 'F4' },
+        { time: 19.0, lane: 0, note: 'Eb3' },
+        { time: 19.6, lane: 1, note: 'G#3' },
+        { time: 20.0, lane: 0, note: 'Eb3' }
+      ]
+    },
+
+    {
+      id: 'mario',
+      title: 'Super Mario Bros Theme',
+      artist: 'Koji Kondo',
+      bpm: 100,
+      difficulty: 'Medium',
+      duration: 22,
+      notes: [
+        // Overworld theme (half-time)
+        { time: 0.3, lane: 1, note: 'E4' },
+        { time: 0.6, lane: 1, note: 'E4' },
+        { time: 1.2, lane: 1, note: 'E4' },
+        { time: 1.5, lane: 0, note: 'C4' },
+        { time: 1.8, lane: 1, note: 'E4' },
+        { time: 2.4, lane: 2, note: 'G4' },
+        { time: 3.6, lane: 1, note: 'G3' },
+        // Second phrase
+        { time: 4.8, lane: 0, note: 'C4' },
+        { time: 5.4, lane: 1, note: 'G3' },
+        { time: 6.0, lane: 0, note: 'E3' },
+        { time: 6.6, lane: 1, note: 'A3' },
+        { time: 7.2, lane: 1, note: 'B3' },
+        { time: 7.5, lane: 1, note: 'Bb3' },
+        { time: 7.8, lane: 1, note: 'A3' },
+        // Third phrase (triplet feel)
+        { time: 8.4, lane: 1, note: 'G3' },
+        { time: 8.8, lane: 1, note: 'E4' },
+        { time: 9.2, lane: 2, note: 'G4' },
+        { time: 9.6, lane: 3, note: 'A4' },
+        { time: 10.2, lane: 1, note: 'F4' },
+        { time: 10.5, lane: 2, note: 'G4' },
+        { time: 11.1, lane: 1, note: 'E4' },
+        { time: 11.7, lane: 0, note: 'C4' },
+        { time: 12.0, lane: 0, note: 'D4' },
+        { time: 12.3, lane: 1, note: 'B3' },
+        // Repeat first phrase
+        { time: 13.2, lane: 1, note: 'E4' },
+        { time: 13.5, lane: 1, note: 'E4' },
+        { time: 14.1, lane: 1, note: 'E4' },
+        { time: 14.4, lane: 0, note: 'C4' },
+        { time: 14.7, lane: 1, note: 'E4' },
+        { time: 15.3, lane: 2, note: 'G4' },
+        { time: 16.5, lane: 1, note: 'G3' },
+        // Coin / power-up section
+        { time: 17.4, lane: 0, note: 'C4' },
+        { time: 17.7, lane: 1, note: 'E4' },
+        { time: 18.0, lane: 2, note: 'G4' },
+        { time: 18.3, lane: 3, note: 'C5' },
+        { time: 18.9, lane: 3, note: 'A4' },
+        { time: 19.2, lane: 2, note: 'G4' },
+        { time: 19.8, lane: 1, note: 'E4' },
+        { time: 20.1, lane: 2, note: 'G4' },
+        { time: 20.4, lane: 1, note: 'E4' }
+      ]
+    },
+
+    {
+      id: 'rickroll',
+      title: 'Never Gonna Give You Up',
+      artist: 'Rick Astley',
+      bpm: 113,
+      difficulty: 'Medium',
+      duration: 28,
+      notes: [
+        // Intro bass line
+        { time: 0.5, lane: 0, note: 'D4' },
+        { time: 1.0, lane: 1, note: 'E4' },
+        { time: 1.5, lane: 2, note: 'G4' },
+        { time: 2.0, lane: 1, note: 'E4' },
+        // "Never gonna give you up"
+        { time: 3.0, lane: 2, note: 'G4' },
+        { time: 3.5, lane: 3, note: 'A4' },
+        { time: 4.0, lane: 3, note: 'C5' },
+        { time: 4.5, lane: 3, note: 'A4' },
+        { time: 5.0, lane: 1, note: 'E4' },
+        { time: 5.5, lane: 1, note: 'E4' },
+        { time: 6.0, lane: 0, note: 'D4' },
+        // "Never gonna let you down"
+        { time: 7.0, lane: 2, note: 'G4' },
+        { time: 7.5, lane: 3, note: 'A4' },
+        { time: 8.0, lane: 3, note: 'C5' },
+        { time: 8.5, lane: 3, note: 'C5' },
+        { time: 9.0, lane: 0, note: 'D4' },
+        { time: 9.5, lane: 3, note: 'C5' },
+        { time: 10.0, lane: 3, note: 'A4' },
+        { time: 10.5, lane: 2, note: 'G4' },
+        { time: 11.0, lane: 3, note: 'A4' },
+        // "Never gonna run around and desert you"
+        { time: 12.0, lane: 2, note: 'G4' },
+        { time: 12.5, lane: 2, note: 'G4' },
+        { time: 13.0, lane: 3, note: 'C5' },
+        { time: 13.5, lane: 0, note: 'D4' },
+        { time: 14.0, lane: 0, note: 'D4' },
+        { time: 14.5, lane: 3, note: 'C5' },
+        { time: 15.0, lane: 3, note: 'A4' },
+        { time: 15.5, lane: 2, note: 'G4' },
+        // "Never gonna make you cry"
+        { time: 17.0, lane: 2, note: 'G4' },
+        { time: 17.5, lane: 3, note: 'A4' },
+        { time: 18.0, lane: 3, note: 'C5' },
+        { time: 18.5, lane: 3, note: 'A4' },
+        { time: 19.0, lane: 1, note: 'E4' },
+        { time: 19.5, lane: 1, note: 'E4' },
+        { time: 20.0, lane: 0, note: 'D4' },
+        // "Never gonna say goodbye"
+        { time: 21.0, lane: 2, note: 'G4' },
+        { time: 21.5, lane: 3, note: 'A4' },
+        { time: 22.0, lane: 3, note: 'C5' },
+        { time: 22.5, lane: 3, note: 'C5' },
+        { time: 23.0, lane: 3, note: 'D5' },
+        { time: 23.5, lane: 3, note: 'C5' },
+        { time: 24.0, lane: 3, note: 'A4' },
+        { time: 24.5, lane: 2, note: 'G4' },
+        // "Never gonna tell a lie and hurt you"
+        { time: 25.5, lane: 2, note: 'G4' },
+        { time: 26.0, lane: 3, note: 'C5' },
+        { time: 26.5, lane: 3, note: 'A4' },
+        { time: 27.0, lane: 2, note: 'G4' }
+      ]
+    },
+
+    {
+      id: 'blinding',
+      title: 'Blinding Lights',
+      artist: 'The Weeknd',
+      bpm: 171,
+      difficulty: 'Medium',
+      duration: 24,
+      notes: [
+        // Synth intro riff (half-time feel)
+        { time: 0.4, lane: 1, note: 'F4' },
+        { time: 0.75, lane: 2, note: 'G#4' },
+        { time: 1.1, lane: 3, note: 'C5' },
+        { time: 1.45, lane: 3, note: 'Bb4' },
+        { time: 1.8, lane: 1, note: 'F4' },
+        { time: 2.15, lane: 2, note: 'G#4' },
+        { time: 2.5, lane: 3, note: 'C5' },
+        { time: 2.85, lane: 3, note: 'Bb4' },
+        // Repeat riff
+        { time: 3.55, lane: 1, note: 'F4' },
+        { time: 3.9, lane: 2, note: 'G#4' },
+        { time: 4.25, lane: 3, note: 'C5' },
+        { time: 4.6, lane: 3, note: 'Bb4' },
+        { time: 4.95, lane: 1, note: 'F4' },
+        { time: 5.3, lane: 2, note: 'G#4' },
+        { time: 5.65, lane: 3, note: 'C5' },
+        { time: 6.0, lane: 3, note: 'Bb4' },
+        // "I said ooh I'm blinded by the lights" vocal melody
+        { time: 7.0, lane: 1, note: 'F4' },
+        { time: 7.35, lane: 1, note: 'F4' },
+        { time: 7.7, lane: 1, note: 'F4' },
+        { time: 8.05, lane: 2, note: 'G#4' },
+        { time: 8.4, lane: 3, note: 'Bb4' },
+        { time: 8.75, lane: 2, note: 'G#4' },
+        { time: 9.1, lane: 1, note: 'F4' },
+        { time: 9.45, lane: 1, note: 'Eb4' },
+        { time: 9.8, lane: 1, note: 'F4' },
+        // "No I can't sleep until I feel your touch"
+        { time: 10.85, lane: 1, note: 'F4' },
+        { time: 11.2, lane: 1, note: 'F4' },
+        { time: 11.55, lane: 1, note: 'Eb4' },
+        { time: 11.9, lane: 1, note: 'F4' },
+        { time: 12.25, lane: 2, note: 'G#4' },
+        { time: 12.6, lane: 3, note: 'Bb4' },
+        { time: 12.95, lane: 2, note: 'G#4' },
+        { time: 13.3, lane: 1, note: 'F4' },
+        // Synth hook repeat
+        { time: 14.4, lane: 1, note: 'F4' },
+        { time: 14.75, lane: 2, note: 'G#4' },
+        { time: 15.1, lane: 3, note: 'C5' },
+        { time: 15.45, lane: 3, note: 'Bb4' },
+        { time: 15.8, lane: 1, note: 'F4' },
+        { time: 16.15, lane: 2, note: 'G#4' },
+        { time: 16.5, lane: 3, note: 'C5' },
+        { time: 16.85, lane: 3, note: 'Bb4' }
+      ]
+    },
+
+    // ========== HARD ==========
+
     {
       id: 'furelise',
       title: 'Fur Elise',
@@ -174,7 +824,7 @@
         { time: 4.07, lane: 2, note: 'B4' },
         // C5 (resolve)
         { time: 4.28, lane: 2, note: 'C5' },
-        // Repeat motif: E5 Eb5 E5 Eb5 E5 B4 D5 C5
+        // Repeat motif
         { time: 4.71, lane: 3, note: 'E5' },
         { time: 4.93, lane: 3, note: 'Eb4' },
         { time: 5.14, lane: 3, note: 'E5' },
@@ -185,20 +835,16 @@
         { time: 6.21, lane: 2, note: 'C5' },
         // A3
         { time: 6.43, lane: 0, note: 'A3' },
-        // C4 E4 A4
         { time: 6.86, lane: 0, note: 'C4' },
         { time: 7.07, lane: 1, note: 'E4' },
         { time: 7.28, lane: 2, note: 'A4' },
         // B4
         { time: 7.50, lane: 2, note: 'B4' },
-        // E4 C5 B4 A4
         { time: 7.93, lane: 1, note: 'E4' },
         { time: 8.14, lane: 2, note: 'C5' },
         { time: 8.36, lane: 2, note: 'B4' },
         { time: 8.57, lane: 2, note: 'A4' },
-
-        // Second section (descending passage)
-        // E5 Eb5 E5 Eb5 E5 B4 D5 C5
+        // Second section
         { time: 9.00, lane: 3, note: 'E5' },
         { time: 9.21, lane: 3, note: 'Eb4' },
         { time: 9.43, lane: 3, note: 'E5' },
@@ -207,23 +853,16 @@
         { time: 10.07, lane: 2, note: 'B4' },
         { time: 10.28, lane: 2, note: 'D5' },
         { time: 10.50, lane: 2, note: 'C5' },
-        // A3
         { time: 10.71, lane: 0, note: 'A3' },
-        // C4 E4 A4
         { time: 11.14, lane: 0, note: 'C4' },
         { time: 11.36, lane: 1, note: 'E4' },
         { time: 11.57, lane: 2, note: 'A4' },
-        // B4
         { time: 11.78, lane: 2, note: 'B4' },
-        // E4 G#4 B4
         { time: 12.21, lane: 1, note: 'E4' },
         { time: 12.43, lane: 2, note: 'G#4' },
         { time: 12.64, lane: 2, note: 'B4' },
-        // C5
         { time: 12.86, lane: 2, note: 'C5' },
-
-        // Middle section (more lyrical)
-        // E5 Eb5 E5 Eb5 E5 B4 D5 C5
+        // Middle section
         { time: 13.28, lane: 3, note: 'E5' },
         { time: 13.50, lane: 3, note: 'Eb4' },
         { time: 13.71, lane: 3, note: 'E5' },
@@ -232,38 +871,28 @@
         { time: 14.36, lane: 2, note: 'B4' },
         { time: 14.57, lane: 2, note: 'D5' },
         { time: 14.78, lane: 2, note: 'C5' },
-        // A3
         { time: 15.00, lane: 0, note: 'A3' },
-        // C4 E4 A4
         { time: 15.43, lane: 0, note: 'C4' },
         { time: 15.64, lane: 1, note: 'E4' },
         { time: 15.86, lane: 2, note: 'A4' },
-        // B4
         { time: 16.07, lane: 2, note: 'B4' },
-        // E4 C5 B4 A4
         { time: 16.50, lane: 1, note: 'E4' },
         { time: 16.71, lane: 2, note: 'C5' },
         { time: 16.93, lane: 2, note: 'B4' },
         { time: 17.14, lane: 2, note: 'A4' },
-
-        // Contrasting section (C major passage)
-        // C4 D4 E4 F4
+        // Contrasting section
         { time: 17.78, lane: 0, note: 'C4' },
         { time: 18.21, lane: 0, note: 'D4' },
         { time: 18.64, lane: 1, note: 'E4' },
         { time: 19.07, lane: 1, note: 'F4' },
-        // G4 A4 G4 F4
         { time: 19.50, lane: 2, note: 'G4' },
         { time: 19.93, lane: 3, note: 'A4' },
         { time: 20.36, lane: 2, note: 'G4' },
         { time: 20.78, lane: 1, note: 'F4' },
-        // E4 D4 C4
         { time: 21.21, lane: 1, note: 'E4' },
         { time: 21.64, lane: 0, note: 'D4' },
         { time: 22.07, lane: 0, note: 'C4' },
-
         // Final motif return
-        // E5 Eb5 E5 Eb5 E5 B4 D5 C5
         { time: 22.71, lane: 3, note: 'E5' },
         { time: 22.93, lane: 3, note: 'Eb4' },
         { time: 23.14, lane: 3, note: 'E5' },
@@ -272,19 +901,591 @@
         { time: 23.78, lane: 2, note: 'B4' },
         { time: 24.00, lane: 2, note: 'D5' },
         { time: 24.21, lane: 2, note: 'C5' },
-        // A3
         { time: 24.43, lane: 0, note: 'A3' },
-        // C4 E4 A4
         { time: 24.86, lane: 0, note: 'C4' },
         { time: 25.07, lane: 1, note: 'E4' },
         { time: 25.28, lane: 2, note: 'A4' },
-        // B4
         { time: 25.50, lane: 2, note: 'B4' },
-        // E4 C5 B4 A4 (final)
         { time: 25.93, lane: 1, note: 'E4' },
         { time: 26.14, lane: 2, note: 'C5' },
         { time: 26.36, lane: 2, note: 'B4' },
         { time: 26.78, lane: 2, note: 'A4' }
+      ]
+    },
+
+    {
+      id: 'bohemian',
+      title: 'Bohemian Rhapsody',
+      artist: 'Queen',
+      bpm: 76,
+      difficulty: 'Hard',
+      duration: 32,
+      notes: [
+        // "Is this the real life"
+        { time: 0.8, lane: 3, note: 'Bb4' },
+        { time: 1.6, lane: 3, note: 'A4' },
+        { time: 2.4, lane: 2, note: 'G#4' },
+        { time: 3.2, lane: 2, note: 'G4' },
+        // "Is this just fantasy"
+        { time: 4.0, lane: 2, note: 'G4' },
+        { time: 4.6, lane: 2, note: 'G#4' },
+        { time: 5.2, lane: 3, note: 'Bb4' },
+        { time: 5.8, lane: 2, note: 'G4' },
+        { time: 6.4, lane: 1, note: 'Eb4' },
+        // "Caught in a landslide"
+        { time: 7.2, lane: 1, note: 'Eb4' },
+        { time: 7.8, lane: 1, note: 'F4' },
+        { time: 8.4, lane: 2, note: 'G4' },
+        { time: 9.0, lane: 2, note: 'G#4' },
+        { time: 9.6, lane: 3, note: 'Bb4' },
+        // "No escape from reality"
+        { time: 10.4, lane: 3, note: 'Bb4' },
+        { time: 11.0, lane: 2, note: 'G#4' },
+        { time: 11.6, lane: 2, note: 'G4' },
+        { time: 12.2, lane: 1, note: 'F4' },
+        { time: 12.8, lane: 1, note: 'Eb4' },
+        { time: 13.4, lane: 1, note: 'Eb4' },
+        // "Open your eyes"
+        { time: 14.5, lane: 0, note: 'D4' },
+        { time: 15.1, lane: 1, note: 'Eb4' },
+        { time: 15.7, lane: 1, note: 'F4' },
+        { time: 16.3, lane: 2, note: 'G4' },
+        { time: 16.9, lane: 3, note: 'Bb4' },
+        // "Look up to the skies and see"
+        { time: 17.7, lane: 3, note: 'Bb4' },
+        { time: 18.3, lane: 2, note: 'G4' },
+        { time: 18.9, lane: 1, note: 'F4' },
+        { time: 19.5, lane: 1, note: 'Eb4' },
+        { time: 20.1, lane: 1, note: 'F4' },
+        { time: 20.7, lane: 2, note: 'G4' },
+        // "I'm just a poor boy"
+        { time: 21.5, lane: 3, note: 'Bb4' },
+        { time: 22.1, lane: 3, note: 'Bb4' },
+        { time: 22.7, lane: 3, note: 'A4' },
+        { time: 23.3, lane: 3, note: 'Bb4' },
+        // "I need no sympathy"
+        { time: 24.1, lane: 3, note: 'C5' },
+        { time: 24.7, lane: 3, note: 'Bb4' },
+        { time: 25.3, lane: 3, note: 'A4' },
+        { time: 25.9, lane: 2, note: 'G4' },
+        // "Easy come easy go"
+        { time: 26.7, lane: 1, note: 'Eb4' },
+        { time: 27.0, lane: 0, note: 'D4' },
+        { time: 27.4, lane: 1, note: 'Eb4' },
+        { time: 27.8, lane: 1, note: 'F4' },
+        { time: 28.2, lane: 2, note: 'G4' },
+        // "Little high little low"
+        { time: 29.0, lane: 2, note: 'G4' },
+        { time: 29.3, lane: 1, note: 'F4' },
+        { time: 29.7, lane: 2, note: 'G4' },
+        { time: 30.1, lane: 3, note: 'Bb4' },
+        { time: 30.5, lane: 3, note: 'D5' }
+      ]
+    },
+
+    {
+      id: 'mountainking',
+      title: 'In the Hall of the Mountain King',
+      artist: 'Edvard Grieg',
+      bpm: 120,
+      difficulty: 'Hard',
+      duration: 30,
+      notes: [
+        // Main theme (starts slow, accelerates)
+        // Section 1 - Slow (0.5s spacing)
+        { time: 0.5, lane: 0, note: 'D4' },
+        { time: 1.0, lane: 1, note: 'E4' },
+        { time: 1.5, lane: 1, note: 'F4' },
+        { time: 2.0, lane: 2, note: 'G4' },
+        { time: 2.5, lane: 3, note: 'A4' },
+        { time: 3.0, lane: 1, note: 'F4' },
+        { time: 3.5, lane: 3, note: 'A4' },
+        { time: 4.0, lane: 2, note: 'G#4' },
+        { time: 4.5, lane: 1, note: 'E4' },
+        { time: 5.0, lane: 2, note: 'G#4' },
+        { time: 5.5, lane: 2, note: 'G4' },
+        { time: 6.0, lane: 0, note: 'D4' },
+        { time: 6.5, lane: 2, note: 'G4' },
+        // Section 2 - Medium (0.4s spacing)
+        { time: 7.5, lane: 0, note: 'D4' },
+        { time: 7.9, lane: 1, note: 'E4' },
+        { time: 8.3, lane: 1, note: 'F4' },
+        { time: 8.7, lane: 2, note: 'G4' },
+        { time: 9.1, lane: 3, note: 'A4' },
+        { time: 9.5, lane: 1, note: 'F4' },
+        { time: 9.9, lane: 3, note: 'A4' },
+        { time: 10.3, lane: 2, note: 'G#4' },
+        { time: 10.7, lane: 1, note: 'E4' },
+        { time: 11.1, lane: 2, note: 'G#4' },
+        { time: 11.5, lane: 2, note: 'G4' },
+        { time: 11.9, lane: 0, note: 'D4' },
+        { time: 12.3, lane: 2, note: 'G4' },
+        // Section 3 - Fast (0.3s spacing)
+        { time: 13.3, lane: 0, note: 'D4' },
+        { time: 13.6, lane: 1, note: 'E4' },
+        { time: 13.9, lane: 1, note: 'F4' },
+        { time: 14.2, lane: 2, note: 'G4' },
+        { time: 14.5, lane: 3, note: 'A4' },
+        { time: 14.8, lane: 1, note: 'F4' },
+        { time: 15.1, lane: 3, note: 'A4' },
+        { time: 15.4, lane: 2, note: 'G#4' },
+        { time: 15.7, lane: 1, note: 'E4' },
+        { time: 16.0, lane: 2, note: 'G#4' },
+        { time: 16.3, lane: 2, note: 'G4' },
+        { time: 16.6, lane: 0, note: 'D4' },
+        { time: 16.9, lane: 2, note: 'G4' },
+        // Section 4 - Very fast (0.22s spacing)
+        { time: 17.9, lane: 0, note: 'D4' },
+        { time: 18.12, lane: 1, note: 'E4' },
+        { time: 18.34, lane: 1, note: 'F4' },
+        { time: 18.56, lane: 2, note: 'G4' },
+        { time: 18.78, lane: 3, note: 'A4' },
+        { time: 19.0, lane: 1, note: 'F4' },
+        { time: 19.22, lane: 3, note: 'A4' },
+        { time: 19.44, lane: 2, note: 'G#4' },
+        { time: 19.66, lane: 1, note: 'E4' },
+        { time: 19.88, lane: 2, note: 'G#4' },
+        { time: 20.1, lane: 2, note: 'G4' },
+        { time: 20.32, lane: 0, note: 'D4' },
+        { time: 20.54, lane: 2, note: 'G4' },
+        // Section 5 - Frantic finale (0.18s spacing)
+        { time: 21.5, lane: 0, note: 'D4' },
+        { time: 21.68, lane: 1, note: 'E4' },
+        { time: 21.86, lane: 1, note: 'F4' },
+        { time: 22.04, lane: 2, note: 'G4' },
+        { time: 22.22, lane: 3, note: 'A4' },
+        { time: 22.40, lane: 1, note: 'F4' },
+        { time: 22.58, lane: 3, note: 'A4' },
+        { time: 22.76, lane: 2, note: 'G#4' },
+        { time: 22.94, lane: 1, note: 'E4' },
+        { time: 23.12, lane: 2, note: 'G#4' },
+        { time: 23.30, lane: 2, note: 'G4' },
+        { time: 23.48, lane: 0, note: 'D4' },
+        { time: 23.66, lane: 2, note: 'G4' },
+        // Big ending chords
+        { time: 24.5, lane: 0, note: 'D4' },
+        { time: 24.7, lane: 1, note: 'F4' },
+        { time: 24.9, lane: 3, note: 'A4' },
+        { time: 25.3, lane: 0, note: 'D4' },
+        { time: 25.5, lane: 1, note: 'F4' },
+        { time: 25.7, lane: 3, note: 'A4' },
+        { time: 26.1, lane: 0, note: 'D4' }
+      ]
+    },
+
+    {
+      id: 'turkish',
+      title: 'Turkish March',
+      artist: 'Mozart',
+      bpm: 140,
+      difficulty: 'Hard',
+      duration: 28,
+      notes: [
+        // Main theme (Rondo Alla Turca)
+        { time: 0.43, lane: 1, note: 'B3' },
+        { time: 0.64, lane: 1, note: 'A3' },
+        { time: 0.86, lane: 1, note: 'G#3' },
+        { time: 1.07, lane: 1, note: 'A3' },
+        { time: 1.50, lane: 0, note: 'C4' },
+        { time: 1.93, lane: 0, note: 'D4' },
+        { time: 2.14, lane: 0, note: 'C4' },
+        { time: 2.36, lane: 1, note: 'B3' },
+        { time: 2.57, lane: 0, note: 'C4' },
+        { time: 3.00, lane: 1, note: 'E4' },
+        { time: 3.43, lane: 1, note: 'F4' },
+        { time: 3.64, lane: 1, note: 'E4' },
+        { time: 3.86, lane: 0, note: 'D4' },
+        { time: 4.07, lane: 1, note: 'E4' },
+        // Ascending run
+        { time: 4.50, lane: 1, note: 'B3' },
+        { time: 4.71, lane: 1, note: 'A3' },
+        { time: 4.93, lane: 1, note: 'G#3' },
+        { time: 5.14, lane: 1, note: 'A3' },
+        { time: 5.36, lane: 1, note: 'B3' },
+        { time: 5.57, lane: 0, note: 'C4' },
+        { time: 5.78, lane: 0, note: 'D4' },
+        { time: 6.00, lane: 1, note: 'E4' },
+        // Second section
+        { time: 6.86, lane: 2, note: 'A4' },
+        { time: 7.07, lane: 2, note: 'G4' },
+        { time: 7.28, lane: 2, note: 'F#4' },
+        { time: 7.50, lane: 2, note: 'G4' },
+        { time: 7.93, lane: 2, note: 'A4' },
+        { time: 8.36, lane: 3, note: 'B4' },
+        { time: 8.57, lane: 2, note: 'A4' },
+        { time: 8.78, lane: 2, note: 'G4' },
+        { time: 9.00, lane: 2, note: 'A4' },
+        { time: 9.43, lane: 3, note: 'C5' },
+        // Repeat main theme
+        { time: 10.50, lane: 1, note: 'B3' },
+        { time: 10.71, lane: 1, note: 'A3' },
+        { time: 10.93, lane: 1, note: 'G#3' },
+        { time: 11.14, lane: 1, note: 'A3' },
+        { time: 11.57, lane: 0, note: 'C4' },
+        { time: 12.00, lane: 0, note: 'D4' },
+        { time: 12.21, lane: 0, note: 'C4' },
+        { time: 12.43, lane: 1, note: 'B3' },
+        { time: 12.64, lane: 0, note: 'C4' },
+        { time: 13.07, lane: 1, note: 'E4' },
+        { time: 13.50, lane: 1, note: 'F4' },
+        { time: 13.71, lane: 1, note: 'E4' },
+        { time: 13.93, lane: 0, note: 'D4' },
+        { time: 14.14, lane: 1, note: 'E4' },
+        // Fast descending run
+        { time: 14.57, lane: 3, note: 'A4' },
+        { time: 14.78, lane: 2, note: 'G4' },
+        { time: 15.00, lane: 2, note: 'F#4' },
+        { time: 15.21, lane: 1, note: 'E4' },
+        { time: 15.43, lane: 0, note: 'D4' },
+        { time: 15.64, lane: 0, note: 'C4' },
+        { time: 15.86, lane: 1, note: 'B3' },
+        { time: 16.07, lane: 1, note: 'A3' },
+        // Forte section
+        { time: 17.00, lane: 1, note: 'A3' },
+        { time: 17.21, lane: 0, note: 'C4' },
+        { time: 17.43, lane: 1, note: 'E4' },
+        { time: 17.64, lane: 2, note: 'A4' },
+        { time: 18.07, lane: 2, note: 'G4' },
+        { time: 18.28, lane: 2, note: 'F#4' },
+        { time: 18.50, lane: 1, note: 'E4' },
+        { time: 18.71, lane: 0, note: 'D4' },
+        { time: 18.93, lane: 0, note: 'C4' },
+        { time: 19.14, lane: 1, note: 'B3' },
+        { time: 19.36, lane: 1, note: 'A3' }
+      ]
+    },
+
+    {
+      id: 'takeonme',
+      title: 'Take On Me',
+      artist: 'a-ha',
+      bpm: 169,
+      difficulty: 'Hard',
+      duration: 24,
+      notes: [
+        // Iconic synth riff
+        { time: 0.36, lane: 2, note: 'F#4' },
+        { time: 0.54, lane: 2, note: 'F#4' },
+        { time: 0.71, lane: 0, note: 'D4' },
+        { time: 1.07, lane: 1, note: 'B3' },
+        { time: 1.42, lane: 1, note: 'B3' },
+        { time: 1.78, lane: 1, note: 'E4' },
+        { time: 2.13, lane: 1, note: 'E4' },
+        { time: 2.49, lane: 2, note: 'F#4' },
+        { time: 2.85, lane: 2, note: 'F#4' },
+        { time: 3.02, lane: 1, note: 'E4' },
+        { time: 3.38, lane: 1, note: 'E4' },
+        { time: 3.73, lane: 2, note: 'F#4' },
+        { time: 4.09, lane: 2, note: 'F#4' },
+        { time: 4.27, lane: 1, note: 'E4' },
+        { time: 4.44, lane: 2, note: 'F#4' },
+        // Riff repeat
+        { time: 5.15, lane: 2, note: 'F#4' },
+        { time: 5.33, lane: 2, note: 'F#4' },
+        { time: 5.50, lane: 0, note: 'D4' },
+        { time: 5.86, lane: 1, note: 'B3' },
+        { time: 6.21, lane: 1, note: 'B3' },
+        { time: 6.57, lane: 1, note: 'E4' },
+        { time: 6.92, lane: 1, note: 'E4' },
+        { time: 7.28, lane: 2, note: 'F#4' },
+        { time: 7.64, lane: 2, note: 'F#4' },
+        { time: 7.81, lane: 1, note: 'E4' },
+        { time: 8.17, lane: 1, note: 'E4' },
+        { time: 8.52, lane: 2, note: 'F#4' },
+        { time: 8.88, lane: 2, note: 'F#4' },
+        { time: 9.06, lane: 1, note: 'E4' },
+        { time: 9.23, lane: 2, note: 'F#4' },
+        // "Talking away" verse melody
+        { time: 10.3, lane: 2, note: 'F#4' },
+        { time: 10.6, lane: 2, note: 'F#4' },
+        { time: 10.95, lane: 1, note: 'E4' },
+        { time: 11.3, lane: 0, note: 'D4' },
+        { time: 11.65, lane: 0, note: 'D4' },
+        { time: 12.0, lane: 0, note: 'Db4' },
+        { time: 12.35, lane: 0, note: 'D4' },
+        { time: 12.7, lane: 1, note: 'E4' },
+        // "Take on me" chorus
+        { time: 13.8, lane: 1, note: 'A3' },
+        { time: 14.15, lane: 0, note: 'D4' },
+        { time: 14.5, lane: 0, note: 'Db4' },
+        { time: 14.85, lane: 1, note: 'A3' },
+        { time: 15.2, lane: 1, note: 'A3' },
+        { time: 15.55, lane: 1, note: 'E4' },
+        { time: 15.9, lane: 0, note: 'D4' },
+        { time: 16.25, lane: 0, note: 'D4' },
+        // "Take me on"
+        { time: 16.95, lane: 1, note: 'A3' },
+        { time: 17.3, lane: 0, note: 'D4' },
+        { time: 17.65, lane: 0, note: 'Db4' },
+        { time: 18.0, lane: 1, note: 'A3' },
+        // "I'll be gone"
+        { time: 18.7, lane: 1, note: 'A3' },
+        { time: 19.05, lane: 1, note: 'B3' },
+        { time: 19.4, lane: 0, note: 'D4' },
+        { time: 19.75, lane: 0, note: 'D4' },
+        { time: 20.1, lane: 1, note: 'B3' },
+        { time: 20.45, lane: 1, note: 'B3' },
+        { time: 20.8, lane: 1, note: 'E4' },
+        { time: 21.15, lane: 0, note: 'D4' }
+      ]
+    },
+
+    {
+      id: 'megalovania',
+      title: 'Megalovania',
+      artist: 'Toby Fox',
+      bpm: 120,
+      difficulty: 'Hard',
+      duration: 26,
+      notes: [
+        // Main riff - Line 1 (D D D A G# G F D F G)
+        { time: 0.5, lane: 0, note: 'D4' },
+        { time: 0.75, lane: 0, note: 'D4' },
+        { time: 1.0, lane: 3, note: 'D5' },
+        { time: 1.5, lane: 3, note: 'A4' },
+        { time: 1.85, lane: 2, note: 'G#4' },
+        { time: 2.1, lane: 2, note: 'G4' },
+        { time: 2.5, lane: 1, note: 'F4' },
+        { time: 2.75, lane: 0, note: 'D4' },
+        { time: 3.0, lane: 1, note: 'F4' },
+        { time: 3.25, lane: 2, note: 'G4' },
+        // Line 2 (C C D A G# G F D F G)
+        { time: 4.0, lane: 0, note: 'C4' },
+        { time: 4.25, lane: 0, note: 'C4' },
+        { time: 4.5, lane: 3, note: 'D5' },
+        { time: 5.0, lane: 3, note: 'A4' },
+        { time: 5.35, lane: 2, note: 'G#4' },
+        { time: 5.6, lane: 2, note: 'G4' },
+        { time: 6.0, lane: 1, note: 'F4' },
+        { time: 6.25, lane: 0, note: 'D4' },
+        { time: 6.5, lane: 1, note: 'F4' },
+        { time: 6.75, lane: 2, note: 'G4' },
+        // Line 3 (B B D A G# G F D F G)
+        { time: 7.5, lane: 1, note: 'B3' },
+        { time: 7.75, lane: 1, note: 'B3' },
+        { time: 8.0, lane: 3, note: 'D5' },
+        { time: 8.5, lane: 3, note: 'A4' },
+        { time: 8.85, lane: 2, note: 'G#4' },
+        { time: 9.1, lane: 2, note: 'G4' },
+        { time: 9.5, lane: 1, note: 'F4' },
+        { time: 9.75, lane: 0, note: 'D4' },
+        { time: 10.0, lane: 1, note: 'F4' },
+        { time: 10.25, lane: 2, note: 'G4' },
+        // Line 4 (Bb Bb D A G# G F D F G)
+        { time: 11.0, lane: 1, note: 'Bb3' },
+        { time: 11.25, lane: 1, note: 'Bb3' },
+        { time: 11.5, lane: 3, note: 'D5' },
+        { time: 12.0, lane: 3, note: 'A4' },
+        { time: 12.35, lane: 2, note: 'G#4' },
+        { time: 12.6, lane: 2, note: 'G4' },
+        { time: 13.0, lane: 1, note: 'F4' },
+        { time: 13.25, lane: 0, note: 'D4' },
+        { time: 13.5, lane: 1, note: 'F4' },
+        { time: 13.75, lane: 2, note: 'G4' },
+        // Second section - faster, more intense
+        { time: 14.5, lane: 0, note: 'D4' },
+        { time: 14.7, lane: 0, note: 'D4' },
+        { time: 14.9, lane: 3, note: 'D5' },
+        { time: 15.15, lane: 3, note: 'A4' },
+        { time: 15.35, lane: 2, note: 'G#4' },
+        { time: 15.55, lane: 2, note: 'G4' },
+        { time: 15.75, lane: 1, note: 'F4' },
+        { time: 15.95, lane: 0, note: 'D4' },
+        { time: 16.15, lane: 1, note: 'F4' },
+        { time: 16.35, lane: 2, note: 'G4' },
+        // Fast section line 2
+        { time: 17.0, lane: 0, note: 'C4' },
+        { time: 17.2, lane: 0, note: 'C4' },
+        { time: 17.4, lane: 3, note: 'D5' },
+        { time: 17.65, lane: 3, note: 'A4' },
+        { time: 17.85, lane: 2, note: 'G#4' },
+        { time: 18.05, lane: 2, note: 'G4' },
+        { time: 18.25, lane: 1, note: 'F4' },
+        { time: 18.45, lane: 0, note: 'D4' },
+        { time: 18.65, lane: 1, note: 'F4' },
+        { time: 18.85, lane: 2, note: 'G4' },
+        // Finale
+        { time: 19.5, lane: 1, note: 'B3' },
+        { time: 19.7, lane: 1, note: 'B3' },
+        { time: 19.9, lane: 3, note: 'D5' },
+        { time: 20.15, lane: 3, note: 'A4' },
+        { time: 20.35, lane: 2, note: 'G#4' },
+        { time: 20.55, lane: 2, note: 'G4' },
+        { time: 20.75, lane: 1, note: 'F4' },
+        { time: 20.95, lane: 0, note: 'D4' },
+        { time: 21.15, lane: 1, note: 'F4' },
+        { time: 21.35, lane: 2, note: 'G4' },
+        { time: 22.0, lane: 1, note: 'Bb3' },
+        { time: 22.2, lane: 1, note: 'Bb3' },
+        { time: 22.4, lane: 3, note: 'D5' },
+        { time: 22.65, lane: 3, note: 'A4' },
+        { time: 22.85, lane: 2, note: 'G#4' },
+        { time: 23.05, lane: 2, note: 'G4' },
+        { time: 23.25, lane: 1, note: 'F4' },
+        { time: 23.45, lane: 0, note: 'D4' }
+      ]
+    },
+
+    {
+      id: 'moonlight3',
+      title: 'Moonlight Sonata (3rd Movement)',
+      artist: 'Beethoven',
+      bpm: 160,
+      difficulty: 'Hard',
+      duration: 26,
+      notes: [
+        // Fast arpeggios in C# minor (Db-E-G#-Db5)
+        // Sweeping pattern: 0-1-2-3-2-1-0-1-2-3
+        { time: 0.38, lane: 0, note: 'Db4' },
+        { time: 0.56, lane: 1, note: 'E4' },
+        { time: 0.75, lane: 2, note: 'G#4' },
+        { time: 0.94, lane: 3, note: 'Db5' },
+        { time: 1.12, lane: 2, note: 'G#4' },
+        { time: 1.30, lane: 1, note: 'E4' },
+        { time: 1.50, lane: 0, note: 'Db4' },
+        { time: 1.68, lane: 1, note: 'E4' },
+        { time: 1.88, lane: 2, note: 'G#4' },
+        { time: 2.06, lane: 3, note: 'Db5' },
+        // Second arpeggio pattern (different chord)
+        { time: 2.44, lane: 0, note: 'D4' },
+        { time: 2.62, lane: 2, note: 'F#4' },
+        { time: 2.80, lane: 3, note: 'A4' },
+        { time: 2.98, lane: 3, note: 'D5' },
+        { time: 3.16, lane: 3, note: 'A4' },
+        { time: 3.34, lane: 2, note: 'F#4' },
+        { time: 3.54, lane: 0, note: 'D4' },
+        { time: 3.72, lane: 2, note: 'F#4' },
+        { time: 3.90, lane: 3, note: 'A4' },
+        { time: 4.08, lane: 3, note: 'D5' },
+        // Third pattern (E chord)
+        { time: 4.46, lane: 1, note: 'E4' },
+        { time: 4.64, lane: 2, note: 'G#4' },
+        { time: 4.82, lane: 3, note: 'B4' },
+        { time: 5.0, lane: 3, note: 'E5' },
+        { time: 5.18, lane: 3, note: 'B4' },
+        { time: 5.36, lane: 2, note: 'G#4' },
+        { time: 5.56, lane: 1, note: 'E4' },
+        { time: 5.74, lane: 2, note: 'G#4' },
+        { time: 5.92, lane: 3, note: 'B4' },
+        { time: 6.10, lane: 3, note: 'E5' },
+        // Dramatic descending passage
+        { time: 6.6, lane: 3, note: 'E5' },
+        { time: 6.78, lane: 3, note: 'D5' },
+        { time: 6.96, lane: 3, note: 'Db5' },
+        { time: 7.14, lane: 3, note: 'B4' },
+        { time: 7.32, lane: 3, note: 'A4' },
+        { time: 7.50, lane: 2, note: 'G#4' },
+        { time: 7.68, lane: 2, note: 'F#4' },
+        { time: 7.86, lane: 1, note: 'E4' },
+        { time: 8.04, lane: 1, note: 'Eb4' },
+        { time: 8.22, lane: 0, note: 'Db4' },
+        { time: 8.40, lane: 0, note: 'D4' },
+        { time: 8.58, lane: 1, note: 'E4' },
+        // Return to main arpeggio faster
+        { time: 9.2, lane: 0, note: 'Db4' },
+        { time: 9.35, lane: 1, note: 'E4' },
+        { time: 9.50, lane: 2, note: 'G#4' },
+        { time: 9.65, lane: 3, note: 'Db5' },
+        { time: 9.80, lane: 2, note: 'G#4' },
+        { time: 9.95, lane: 1, note: 'E4' },
+        { time: 10.10, lane: 0, note: 'Db4' },
+        { time: 10.25, lane: 1, note: 'E4' },
+        { time: 10.40, lane: 2, note: 'G#4' },
+        { time: 10.55, lane: 3, note: 'Db5' },
+        { time: 10.70, lane: 2, note: 'G#4' },
+        { time: 10.85, lane: 1, note: 'E4' },
+        // Intense climax
+        { time: 11.4, lane: 0, note: 'Db4' },
+        { time: 11.55, lane: 2, note: 'F#4' },
+        { time: 11.7, lane: 3, note: 'A4' },
+        { time: 11.85, lane: 2, note: 'F#4' },
+        { time: 12.0, lane: 0, note: 'D4' },
+        { time: 12.15, lane: 1, note: 'E4' },
+        { time: 12.3, lane: 2, note: 'G#4' },
+        { time: 12.45, lane: 1, note: 'E4' },
+        { time: 12.6, lane: 0, note: 'Db4' },
+        { time: 12.75, lane: 1, note: 'E4' },
+        { time: 12.9, lane: 2, note: 'G#4' },
+        { time: 13.05, lane: 3, note: 'Db5' },
+        { time: 13.2, lane: 3, note: 'E5' },
+        { time: 13.35, lane: 3, note: 'Db5' },
+        { time: 13.5, lane: 2, note: 'G#4' },
+        { time: 13.65, lane: 1, note: 'E4' },
+        { time: 13.8, lane: 0, note: 'Db4' }
+      ]
+    },
+
+    {
+      id: 'mapleleaf',
+      title: 'Maple Leaf Rag',
+      artist: 'Scott Joplin',
+      bpm: 100,
+      difficulty: 'Hard',
+      duration: 26,
+      notes: [
+        // Opening theme - syncopated ragtime
+        { time: 0.3, lane: 3, note: 'A4' },
+        { time: 0.45, lane: 3, note: 'C5' },
+        { time: 0.6, lane: 3, note: 'A4' },
+        { time: 0.9, lane: 2, note: 'G4' },
+        { time: 1.2, lane: 2, note: 'G4' },
+        { time: 1.5, lane: 1, note: 'E4' },
+        // Bass stride
+        { time: 1.8, lane: 0, note: 'C4' },
+        { time: 2.1, lane: 1, note: 'E4' },
+        { time: 2.4, lane: 2, note: 'G4' },
+        { time: 2.55, lane: 3, note: 'A4' },
+        { time: 2.85, lane: 3, note: 'C5' },
+        { time: 3.15, lane: 3, note: 'A4' },
+        { time: 3.45, lane: 2, note: 'G4' },
+        { time: 3.75, lane: 1, note: 'E4' },
+        { time: 4.05, lane: 0, note: 'C4' },
+        // Second phrase with syncopation
+        { time: 4.5, lane: 3, note: 'A4' },
+        { time: 4.65, lane: 3, note: 'Bb4' },
+        { time: 4.8, lane: 3, note: 'A4' },
+        { time: 5.1, lane: 2, note: 'G4' },
+        { time: 5.25, lane: 2, note: 'F#4' },
+        { time: 5.55, lane: 2, note: 'G4' },
+        { time: 5.85, lane: 1, note: 'E4' },
+        { time: 6.0, lane: 0, note: 'D4' },
+        { time: 6.3, lane: 0, note: 'C4' },
+        // Stride bass pattern
+        { time: 6.6, lane: 0, note: 'C3' },
+        { time: 6.9, lane: 1, note: 'G3' },
+        { time: 7.05, lane: 1, note: 'E4' },
+        { time: 7.2, lane: 0, note: 'C3' },
+        { time: 7.5, lane: 1, note: 'G3' },
+        { time: 7.65, lane: 1, note: 'E4' },
+        // Treble melody continues
+        { time: 8.1, lane: 3, note: 'A4' },
+        { time: 8.25, lane: 3, note: 'C5' },
+        { time: 8.55, lane: 3, note: 'A4' },
+        { time: 8.85, lane: 2, note: 'G4' },
+        { time: 9.0, lane: 2, note: 'F#4' },
+        { time: 9.15, lane: 1, note: 'E4' },
+        { time: 9.45, lane: 0, note: 'D4' },
+        { time: 9.75, lane: 0, note: 'C4' },
+        // Ascending chromatic run
+        { time: 10.2, lane: 0, note: 'C4' },
+        { time: 10.35, lane: 0, note: 'Db4' },
+        { time: 10.50, lane: 0, note: 'D4' },
+        { time: 10.65, lane: 1, note: 'Eb4' },
+        { time: 10.80, lane: 1, note: 'E4' },
+        { time: 10.95, lane: 1, note: 'F4' },
+        { time: 11.10, lane: 2, note: 'F#4' },
+        { time: 11.25, lane: 2, note: 'G4' },
+        { time: 11.40, lane: 2, note: 'G#4' },
+        { time: 11.55, lane: 3, note: 'A4' },
+        // Big finish section
+        { time: 12.0, lane: 0, note: 'C3' },
+        { time: 12.15, lane: 1, note: 'E4' },
+        { time: 12.30, lane: 2, note: 'G4' },
+        { time: 12.45, lane: 3, note: 'C5' },
+        { time: 12.75, lane: 3, note: 'A4' },
+        { time: 12.90, lane: 2, note: 'G4' },
+        { time: 13.05, lane: 1, note: 'E4' },
+        { time: 13.35, lane: 0, note: 'C4' }
       ]
     }
   ];
