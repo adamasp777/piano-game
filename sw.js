@@ -1,10 +1,11 @@
-var CACHE_NAME = 'piano-keys-v1';
+var CACHE_NAME = 'piano-keys-v2';
 var ASSETS = [
   './',
   './index.html',
   './css/style.css',
   './js/audio.js',
   './js/songs.js',
+  './js/analyzer.js',
   './js/game.js'
 ];
 

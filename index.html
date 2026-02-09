@@ -39,7 +39,24 @@
   <div class="screen hidden" id="select-screen">
     <h2 class="screen-title">Select Song</h2>
     <div class="song-list" id="song-list"></div>
+    <div class="import-controls">
+      <label for="import-difficulty" class="import-label">Import difficulty:</label>
+      <select id="import-difficulty" class="import-select">
+        <option value="Easy">Easy</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
     <button class="btn btn-secondary btn-back" id="btn-back-start">Back</button>
+  </div>
+
+  <!-- Hidden file input for MP3 import -->
+  <input type="file" id="file-input" accept="audio/*">
+
+  <!-- Import progress overlay -->
+  <div id="import-overlay" class="hidden">
+    <div class="import-spinner"></div>
+    <div id="import-status">Analyzing...</div>
   </div>
 
   <!-- Pause Screen -->
@@ -78,6 +95,7 @@
 
   <script src="js/audio.js"></script>
   <script src="js/songs.js"></script>
+  <script src="js/analyzer.js"></script>
   <script src="js/game.js"></script>
   <script>
     if ('serviceWorker' in navigator) {

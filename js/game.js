@@ -82,6 +82,25 @@
   function populateSongList() {
     var container = document.getElementById('song-list');
     container.innerHTML = '';
+
+    // Import Song card at top
+    var importCard = document.createElement('button');
+    importCard.className = 'song-card-import';
+    importCard.innerHTML =
+      '<div class="song-info">' +
+        '<div class="song-name">Import Song</div>' +
+        '<div class="song-artist">Load an MP3 or audio file</div>' +
+      '</div>' +
+      '<span class="diff-import">+</span>';
+    importCard.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      document.getElementById('file-input').click();
+    }, { passive: false });
+    importCard.addEventListener('click', function () {
+      document.getElementById('file-input').click();
+    });
+    container.appendChild(importCard);
+
     var songs = Songs.list;
     for (var i = 0; i < songs.length; i++) {
       (function (song) {
@@ -98,6 +117,42 @@
         container.appendChild(card);
       })(songs[i]);
     }
+  }
+
+  // --- Import handling ---
+  function showImportProgress(show, msg) {
+    var overlay = document.getElementById('import-overlay');
+    var status = document.getElementById('import-status');
+    if (show) {
+      status.textContent = msg || 'Analyzing...';
+      overlay.classList.remove('hidden');
+    } else {
+      overlay.classList.add('hidden');
+    }
+  }
+
+  function handleFileImport(file) {
+    if (!file) return;
+    AudioEngine.init();
+    showImportProgress(true, 'Decoding audio...');
+
+    AudioEngine.decodeFile(file, function (err, audioBuffer) {
+      if (err) {
+        showImportProgress(false);
+        alert('Could not decode audio file. Please try a different file.');
+        return;
+      }
+
+      showImportProgress(true, 'Analyzing song...');
+
+      // Use setTimeout to let UI update before heavy computation
+      setTimeout(function () {
+        var difficulty = document.getElementById('import-difficulty').value;
+        var song = SongAnalyzer.analyze(audioBuffer, file.name, { difficulty: difficulty });
+        showImportProgress(false);
+        startSong(song);
+      }, 50);
+    });
   }
 
   // --- Start a song ---
@@ -127,6 +182,11 @@
     AudioEngine.resume();
     songStartTime = AudioEngine.now() + 0.5; // small delay before notes start
 
+    // Start backing track for custom/imported songs
+    if (song.audioBuffer) {
+      AudioEngine.playBackingTrack(song.audioBuffer, songStartTime);
+    }
+
     state = STATES.PLAYING;
     hideAllScreens();
     updateHud();
@@ -154,11 +214,16 @@
         nextScheduleIdx = i + 1;
       }
     }
+    // Restart backing track from paused position
+    if (currentSong && currentSong.audioBuffer) {
+      AudioEngine.restartBackingTrack(songStartTime);
+    }
     state = STATES.PLAYING;
     hideAllScreens();
   }
 
   function quitToMenu() {
+    AudioEngine.stopBackingTrack();
     AudioEngine.suspend();
     state = STATES.SONG_SELECT;
     showScreen('select-screen');
@@ -312,12 +377,16 @@
 
   // --- Audio scheduling ---
   function scheduleAudio(elapsed) {
+    var isCustom = currentSong && currentSong.isCustom;
     for (var i = nextScheduleIdx; i < songNotes.length; i++) {
       var n = songNotes[i];
       if (n.scheduled) continue;
       if (n.time > elapsed + SCHEDULE_AHEAD) break;
       n.scheduled = true;
-      AudioEngine.playSongNote(n.note, songStartTime + n.time);
+      // Skip individual note playback for custom songs (backing track provides audio)
+      if (!isCustom) {
+        AudioEngine.playSongNote(n.note, songStartTime + n.time);
+      }
       nextScheduleIdx = i + 1;
     }
   }
@@ -331,6 +400,8 @@
         n.missed = true;
         misses++;
         combo = 0;
+        score = Math.max(0, score - 100);
+        AudioEngine.playMissSound();
         addRating('MISS', n.lane, '#e74c3c');
         updateHud();
       }
@@ -343,6 +414,7 @@
     var lastNote = songNotes[songNotes.length - 1];
     if (elapsed > lastNote.time + 1.5) {
       songFinished = true;
+      AudioEngine.stopBackingTrack();
       setTimeout(showResults, 500);
     }
   }
@@ -621,6 +693,13 @@
     document.getElementById('btn-menu').addEventListener('click', function () {
       state = STATES.SONG_SELECT;
       showScreen('select-screen');
+    });
+
+    // File import handler
+    document.getElementById('file-input').addEventListener('change', function (e) {
+      var file = e.target.files[0];
+      if (file) handleFileImport(file);
+      e.target.value = ''; // reset so same file can be re-selected
     });
 
     // Prevent context menu on long press

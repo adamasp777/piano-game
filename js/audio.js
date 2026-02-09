@@ -4,6 +4,12 @@
   var ctx = null;
   var masterGain = null;
 
+  // Backing track state
+  var backingSource = null;
+  var backingBuffer = null;
+  var backingStartOffset = 0;  // offset into the audio buffer
+  var backingCtxTime = 0;      // AudioContext time when playback started
+
   var NOTE_FREQS = {
     'C3': 130.81, 'D3': 146.83, 'E3': 164.81, 'F3': 174.61,
     'G3': 196.00, 'A3': 220.00, 'B3': 246.94,
@@ -115,11 +121,72 @@
   }
 
   function suspend() {
-    if (ctx && ctx.state === 'running') ctx.suspend();
+    if (ctx && ctx.state === 'running') {
+      // Record backing track offset before suspending
+      if (backingSource && backingBuffer) {
+        backingStartOffset += ctx.currentTime - backingCtxTime;
+      }
+      ctx.suspend();
+    }
   }
 
   function resume() {
     if (ctx && ctx.state === 'suspended') ctx.resume();
+  }
+
+  function playBackingTrack(audioBuffer, ctxStartTime) {
+    if (!ctx) init();
+    stopBackingTrack();
+    backingBuffer = audioBuffer;
+    backingStartOffset = 0;
+    backingSource = ctx.createBufferSource();
+    backingSource.buffer = audioBuffer;
+    backingSource.connect(masterGain);
+    backingCtxTime = ctxStartTime;
+    backingSource.start(ctxStartTime, 0);
+  }
+
+  function stopBackingTrack() {
+    if (backingSource) {
+      try { backingSource.stop(); } catch (e) { /* already stopped */ }
+      try { backingSource.disconnect(); } catch (e) { /* already disconnected */ }
+      backingSource = null;
+    }
+    backingBuffer = null;
+    backingStartOffset = 0;
+    backingCtxTime = 0;
+  }
+
+  function restartBackingTrack(ctxStartTime) {
+    if (!backingBuffer) return;
+    if (backingSource) {
+      try { backingSource.stop(); } catch (e) { /* ok */ }
+      try { backingSource.disconnect(); } catch (e) { /* ok */ }
+    }
+    backingSource = ctx.createBufferSource();
+    backingSource.buffer = backingBuffer;
+    backingSource.connect(masterGain);
+    backingCtxTime = ctxStartTime;
+    var offset = Math.max(0, backingStartOffset);
+    if (offset < backingBuffer.duration) {
+      backingSource.start(ctxStartTime, offset);
+    }
+  }
+
+  function decodeFile(file, callback) {
+    if (!ctx) init();
+    var reader = new FileReader();
+    reader.onload = function () {
+      ctx.decodeAudioData(reader.result, function (buffer) {
+        callback(null, buffer);
+      }, function (err) {
+        callback(err || new Error('Failed to decode audio'));
+      });
+    };
+    reader.onerror = function () {
+      callback(new Error('Failed to read file'));
+    };
+    reader.readAsArrayBuffer(file);
   }
 
   window.AudioEngine = {
@@ -130,6 +197,10 @@
     playSongNote: playSongNote,
     now: now,
     suspend: suspend,
-    resume: resume
+    resume: resume,
+    playBackingTrack: playBackingTrack,
+    stopBackingTrack: stopBackingTrack,
+    restartBackingTrack: restartBackingTrack,
+    decodeFile: decodeFile
   };
 })();
