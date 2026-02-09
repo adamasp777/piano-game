@@ -1,0 +1,316 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --lane-red: #e74c3c;
+  --lane-blue: #3498db;
+  --lane-green: #2ecc71;
+  --lane-yellow: #f1c40f;
+  --bg-dark: #0a0a1a;
+  --bg-panel: rgba(10, 10, 30, 0.92);
+  --text-primary: #ffffff;
+  --text-secondary: #aab0c0;
+  --accent: #9b59b6;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#game-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Screen overlays */
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.screen.hidden {
+  display: none;
+}
+
+/* Start Screen */
+#start-screen {
+  background: linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 50%, #0a1a3e 100%);
+}
+
+.game-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--lane-red), var(--lane-yellow), var(--lane-green), var(--lane-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.game-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  width: 240px;
+  min-height: 52px;
+  padding: 14px 24px;
+  margin: 8px auto;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #8e44ad);
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-back {
+  width: auto;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  margin-top: 20px;
+}
+
+/* Song Select */
+#select-screen {
+  background: var(--bg-panel);
+}
+
+.screen-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.song-list {
+  width: 90%;
+  max-width: 360px;
+}
+
+.song-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 64px;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  text-align: left;
+  font-size: 1rem;
+  transition: background 0.15s;
+}
+
+.song-card:active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.song-info {
+  flex: 1;
+}
+
+.song-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.song-artist {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.song-difficulty {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-left: 12px;
+}
+
+.diff-Easy { background: rgba(46, 204, 113, 0.25); color: var(--lane-green); }
+.diff-Medium { background: rgba(241, 196, 15, 0.25); color: var(--lane-yellow); }
+.diff-Hard { background: rgba(231, 76, 60, 0.25); color: var(--lane-red); }
+
+/* Gameplay HUD */
+#hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+#hud.hidden {
+  display: none;
+}
+
+.hud-score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-combo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--lane-yellow);
+}
+
+.hud-combo.hidden {
+  visibility: hidden;
+}
+
+#pause-btn {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pause Screen */
+#pause-screen {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+/* Results Screen */
+#results-screen {
+  background: var(--bg-panel);
+}
+
+.grade {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.grade-S { color: #f39c12; text-shadow: 0 0 30px rgba(243, 156, 18, 0.5); }
+.grade-A { color: var(--lane-green); }
+.grade-B { color: var(--lane-blue); }
+.grade-C { color: var(--lane-yellow); }
+.grade-F { color: var(--lane-red); }
+
+.results-song {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.results-stats {
+  width: 80%;
+  max-width: 280px;
+  margin-bottom: 1.5rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 1rem;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-perfect { color: #f39c12; }
+.stat-good { color: var(--lane-green); }
+.stat-miss { color: var(--lane-red); }
+
+.final-score {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+/* Song progress bar */
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 6;
+}
+
+.progress-bar.hidden {
+  display: none;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.1s linear;
+}

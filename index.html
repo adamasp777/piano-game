@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Grand Piano Keys</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div>
+      <div class="hud-score" id="hud-score">0</div>
+      <div class="hud-combo hidden" id="hud-combo">0x Combo</div>
+    </div>
+    <button id="pause-btn" aria-label="Pause">&#10074;&#10074;</button>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-bar hidden" id="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <!-- Start Screen -->
+  <div class="screen" id="start-screen">
+    <h1 class="game-title">Grand Piano Keys</h1>
+    <p class="game-subtitle">Tap the keys to the rhythm!</p>
+    <button class="btn btn-primary" id="btn-play">Play</button>
+  </div>
+
+  <!-- Song Select Screen -->
+  <div class="screen hidden" id="select-screen">
+    <h2 class="screen-title">Select Song</h2>
+    <div class="song-list" id="song-list"></div>
+    <button class="btn btn-secondary btn-back" id="btn-back-start">Back</button>
+  </div>
+
+  <!-- Pause Screen -->
+  <div class="screen hidden" id="pause-screen">
+    <h2 class="screen-title">Paused</h2>
+    <button class="btn btn-primary" id="btn-resume">Resume</button>
+    <button class="btn btn-secondary" id="btn-quit">Quit to Menu</button>
+  </div>
+
+  <!-- Results Screen -->
+  <div class="screen hidden" id="results-screen">
+    <div class="grade" id="result-grade">S</div>
+    <div class="results-song" id="result-song">Song Name</div>
+    <div class="final-score" id="result-score">0</div>
+    <div class="results-stats">
+      <div class="stat-row">
+        <span class="stat-label">Perfect</span>
+        <span class="stat-value stat-perfect" id="stat-perfect">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Good</span>
+        <span class="stat-value stat-good" id="stat-good">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Miss</span>
+        <span class="stat-value stat-miss" id="stat-miss">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Max Combo</span>
+        <span class="stat-value" id="stat-combo">0</span>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="btn-retry">Play Again</button>
+    <button class="btn btn-secondary" id="btn-menu">Song Select</button>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/songs.js"></script>
+  <script src="js/game.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+</body>
+</html>

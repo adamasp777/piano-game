@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><body>
+<p>Right-click each image and "Save image as" into the <code>icons/</code> folder:</p>
+<p><strong>icon-192.png:</strong></p>
+<canvas id="c192" width="192" height="192"></canvas>
+<p><strong>icon-512.png:</strong></p>
+<canvas id="c512" width="512" height="512"></canvas>
+<script>
+function drawIcon(canvas) {
+  var s = canvas.width;
+  var ctx = canvas.getContext('2d');
+  // Background
+  var g = ctx.createLinearGradient(0, 0, s, s);
+  g.addColorStop(0, '#1a0a3e');
+  g.addColorStop(1, '#0a1a3e');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.roundRect(0, 0, s, s, s * 0.18);
+  ctx.fill();
+  // 4 colored keys
+  var colors = ['#e74c3c','#3498db','#2ecc71','#f1c40f'];
+  var kw = s * 0.15, kh = s * 0.35, gap = s * 0.04;
+  var totalW = kw * 4 + gap * 3;
+  var startX = (s - totalW) / 2, startY = s * 0.38;
+  for (var i = 0; i < 4; i++) {
+    var x = startX + i * (kw + gap);
+    ctx.fillStyle = colors[i];
+    ctx.beginPath();
+    ctx.roundRect(x, startY, kw, kh, s * 0.03);
+    ctx.fill();
+  }
+  // Title
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold ' + (s * 0.1) + 'px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('\u266B', s/2, s * 0.28);
+}
+drawIcon(document.getElementById('c192'));
+drawIcon(document.getElementById('c512'));
+</script>
+</body></html>
