@@ -4,20 +4,16 @@
   // --- Constants ---
   var FFT_SIZE = 2048;
   var HOP_SIZE = 512;
-  var SAMPLE_RATE = 44100; // will be overridden by actual buffer rate
+  var SAMPLE_RATE = 44100;
 
   // Frequency band edges mapping to lanes
-  // Lane 0 (Red):    20-250 Hz   (bass)
-  // Lane 1 (Blue):   250-1000 Hz (low-mid)
-  // Lane 2 (Green):  1000-4000 Hz (high-mid)
-  // Lane 3 (Yellow): 4000-16000 Hz (treble)
   var BAND_EDGES = [20, 250, 1000, 4000, 16000];
 
   // Difficulty presets
   var DIFFICULTY = {
-    Easy:   { minSpacing: 0.4,  maxNotesPerSec: 2, thresholdMult: 1.8 },
-    Medium: { minSpacing: 0.25, maxNotesPerSec: 4, thresholdMult: 1.4 },
-    Hard:   { minSpacing: 0.15, maxNotesPerSec: 8, thresholdMult: 1.1 }
+    Easy:   { minSpacing: 0.4,  maxNotesPerSec: 2, thresholdMult: 1.6 },
+    Medium: { minSpacing: 0.25, maxNotesPerSec: 4, thresholdMult: 1.3 },
+    Hard:   { minSpacing: 0.15, maxNotesPerSec: 8, thresholdMult: 1.05 }
   };
 
   // Note names per lane for generated charts
@@ -34,7 +30,6 @@
 
   // --- Radix-2 FFT (in-place, iterative) ---
   function fft(reOut, imOut, reIn, N) {
-    // Bit-reversal permutation
     var bits = Math.log2(N) | 0;
     for (var i = 0; i < N; i++) {
       var j = 0;
@@ -45,7 +40,6 @@
       imOut[i] = 0;
     }
 
-    // Cooley-Tukey butterfly
     for (var size = 2; size <= N; size *= 2) {
       var half = size / 2;
       var angle = -2 * Math.PI / size;
@@ -97,7 +91,7 @@
         return b;
       }
     }
-    return -1; // outside range
+    return -1;
   }
 
   // --- Compute band-split spectral flux ---
@@ -106,7 +100,6 @@
     var numFrames = Math.floor((mono.length - FFT_SIZE) / HOP_SIZE) + 1;
     if (numFrames < 2) return [[], [], [], []];
 
-    // Precompute bin-to-band mapping
     var halfN = FFT_SIZE / 2;
     var binBands = new Int8Array(halfN);
     for (var b = 0; b < halfN; b++) {
@@ -120,16 +113,7 @@
       new Float32Array(numFrames)
     ];
 
-    var prevMag = [
-      new Float32Array(halfN),
-      new Float32Array(halfN),
-      new Float32Array(halfN),
-      new Float32Array(halfN)
-    ];
-    // Store magnitude per band per bin (only bins in that band)
-    // Actually, simpler: store full previous magnitude spectrum, split during flux calc
     var prevSpectrum = new Float32Array(halfN);
-
     var reIn = new Float32Array(FFT_SIZE);
     var reOut = new Float32Array(FFT_SIZE);
     var imOut = new Float32Array(FFT_SIZE);
@@ -137,20 +121,16 @@
     for (var frame = 0; frame < numFrames; frame++) {
       var offset = frame * HOP_SIZE;
 
-      // Apply window and copy to input
       for (var i = 0; i < FFT_SIZE; i++) {
         reIn[i] = mono[offset + i] * hannWindow[i];
       }
 
-      // FFT
       fft(reOut, imOut, reIn, FFT_SIZE);
 
-      // Compute magnitude and band-split flux
       for (var b = 0; b < halfN; b++) {
         var mag = Math.sqrt(reOut[b] * reOut[b] + imOut[b] * imOut[b]);
         var band = binBands[b];
         if (band >= 0) {
-          // Half-wave rectified spectral flux
           var diff = mag - prevSpectrum[b];
           if (diff > 0) {
             flux[band][frame] += diff;
@@ -166,14 +146,19 @@
   // --- Adaptive threshold + peak picking ---
   function detectOnsets(flux, sampleRate, thresholdMult) {
     var numFrames = flux[0].length;
+    if (numFrames < 3) return [];
     var hopTime = HOP_SIZE / sampleRate;
-    var medianWindow = 15; // frames for local median
+    var medianWindow = 21;
     var halfWin = Math.floor(medianWindow / 2);
     var onsets = [];
 
     for (var band = 0; band < 4; band++) {
       var f = flux[band];
-      var temp = [];
+
+      // Compute mean flux for this band to use as a floor
+      var sum = 0;
+      for (var i = 0; i < numFrames; i++) sum += f[i];
+      var mean = sum / numFrames;
 
       for (var i = 1; i < numFrames - 1; i++) {
         // Local median for adaptive threshold
@@ -185,66 +170,61 @@
         }
         window.sort(function (a, b) { return a - b; });
         var median = window[Math.floor(window.length / 2)];
-        var threshold = median * thresholdMult + 0.001;
 
-        // Peak picking: must be local maximum and above threshold
+        // Threshold: use whichever is lower - adaptive or mean-based
+        var adaptiveThresh = median * thresholdMult;
+        var meanThresh = mean * (thresholdMult * 0.8);
+        var threshold = Math.min(adaptiveThresh, meanThresh) + 0.0001;
+
+        // Peak picking: local maximum and above threshold
         if (f[i] > threshold && f[i] > f[i - 1] && f[i] >= f[i + 1]) {
-          temp.push({
+          onsets.push({
             time: i * hopTime,
             lane: band,
             strength: f[i]
           });
         }
       }
-
-      // Add to combined onsets
-      for (var k = 0; k < temp.length; k++) {
-        onsets.push(temp[k]);
-      }
     }
 
-    // Sort by time
     onsets.sort(function (a, b) { return a.time - b.time; });
     return onsets;
   }
 
   // --- Post-processing: spacing enforcement, note cap ---
   function postProcess(onsets, difficulty, duration) {
+    if (onsets.length === 0) return [];
+
     var settings = DIFFICULTY[difficulty] || DIFFICULTY.Medium;
     var minSpacing = settings.minSpacing;
     var maxNotesPerSec = settings.maxNotesPerSec;
-    var globalMinSpacing = 0.08; // 80ms absolute minimum
-
-    // Sort by strength (strongest first) for priority picking
-    var sorted = onsets.slice().sort(function (a, b) { return b.strength - a.strength; });
+    var globalMinSpacing = 0.08;
 
     // Max total notes
     var maxTotal = Math.floor(duration * maxNotesPerSec);
+    if (maxTotal < 1) maxTotal = 1;
+
+    // Sort onsets by time first, then use a time-ordered approach
+    var sorted = onsets.slice().sort(function (a, b) { return a.time - b.time; });
+
     var picked = [];
     var laneLast = [-Infinity, -Infinity, -Infinity, -Infinity];
+    var lastPickedTime = -Infinity;
 
-    // Greedily pick strongest onsets respecting spacing
     for (var i = 0; i < sorted.length && picked.length < maxTotal; i++) {
       var o = sorted[i];
+
       // Check per-lane spacing
       if (o.time - laneLast[o.lane] < minSpacing) continue;
 
-      // Check global spacing against all picked notes
-      var tooClose = false;
-      for (var j = 0; j < picked.length; j++) {
-        if (Math.abs(picked[j].time - o.time) < globalMinSpacing) {
-          tooClose = true;
-          break;
-        }
-      }
-      if (tooClose) continue;
+      // Check global spacing
+      if (o.time - lastPickedTime < globalMinSpacing) continue;
 
       picked.push(o);
       laneLast[o.lane] = o.time;
+      lastPickedTime = o.time;
     }
 
-    // Sort by time for final output
-    picked.sort(function (a, b) { return a.time - b.time; });
     return picked;
   }
 
@@ -252,10 +232,11 @@
   function generateFallbackNotes(duration, difficulty) {
     var settings = DIFFICULTY[difficulty] || DIFFICULTY.Medium;
     var interval = settings.minSpacing * 2;
+    if (interval < 0.2) interval = 0.2;
     var notes = [];
-    var time = 1.0; // start 1 second in
+    var time = 0.5;
 
-    while (time < duration - 1.0) {
+    while (time < duration - 0.5) {
       notes.push({
         time: time,
         lane: Math.floor(Math.random() * 4),
@@ -284,7 +265,6 @@
     var medianInterval = intervals[Math.floor(intervals.length / 2)];
     var bpm = Math.round(60 / medianInterval);
 
-    // Clamp to reasonable range
     while (bpm < 60) bpm *= 2;
     while (bpm > 200) bpm /= 2;
 
@@ -299,42 +279,50 @@
     var duration = audioBuffer.duration;
     var settings = DIFFICULTY[difficulty] || DIFFICULTY.Medium;
 
-    // 1. Mono mixdown
-    var mono = mixToMono(audioBuffer);
-
-    // 2-3. STFT + band-split spectral flux
-    var flux = computeSpectralFlux(mono, sampleRate);
-
-    // 4. Onset detection
-    var onsets = detectOnsets(flux, sampleRate, settings.thresholdMult);
-
-    // 5. Post-processing
-    var processed = postProcess(onsets, difficulty, duration);
-
-    // 7. Fallback if no onsets
     var notes;
-    if (processed.length === 0) {
-      notes = generateFallbackNotes(duration, difficulty);
-    } else {
-      // Convert onsets to note objects
-      notes = [];
-      for (var i = 0; i < processed.length; i++) {
-        notes.push({
-          time: processed[i].time,
-          lane: processed[i].lane,
-          note: LANE_NOTES[processed[i].lane]
-        });
+
+    try {
+      // 1. Mono mixdown
+      var mono = mixToMono(audioBuffer);
+
+      // 2-3. STFT + band-split spectral flux
+      var flux = computeSpectralFlux(mono, sampleRate);
+
+      // 4. Onset detection
+      var onsets = detectOnsets(flux, sampleRate, settings.thresholdMult);
+
+      // 5. Post-processing
+      var processed = postProcess(onsets, difficulty, duration);
+
+      if (processed.length >= 5) {
+        // Convert onsets to note objects
+        notes = [];
+        for (var i = 0; i < processed.length; i++) {
+          notes.push({
+            time: processed[i].time,
+            lane: processed[i].lane,
+            note: LANE_NOTES[processed[i].lane]
+          });
+        }
       }
+    } catch (e) {
+      // Analysis failed, will use fallback
+      notes = null;
+    }
+
+    // Fallback if analysis produced too few or no notes
+    if (!notes || notes.length < 5) {
+      notes = generateFallbackNotes(duration, difficulty);
     }
 
     // 8. BPM estimation
-    var bpm = estimateBPM(processed.length > 0 ? processed : notes);
+    var bpm = estimateBPM(notes);
 
     // Clean title from filename
     var title = fileName || 'Imported Song';
-    title = title.replace(/\.[^/.]+$/, ''); // strip extension
-    title = title.replace(/[_-]/g, ' ');    // replace separators
-    title = title.replace(/\b\w/g, function (c) { return c.toUpperCase(); }); // title case
+    title = title.replace(/\.[^/.]+$/, '');
+    title = title.replace(/[_-]/g, ' ');
+    title = title.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
 
     return {
       id: 'custom_' + Date.now(),

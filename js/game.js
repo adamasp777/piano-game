@@ -147,10 +147,15 @@
 
       // Use setTimeout to let UI update before heavy computation
       setTimeout(function () {
-        var difficulty = document.getElementById('import-difficulty').value;
-        var song = SongAnalyzer.analyze(audioBuffer, file.name, { difficulty: difficulty });
-        showImportProgress(false);
-        startSong(song);
+        try {
+          var difficulty = document.getElementById('import-difficulty').value;
+          var song = SongAnalyzer.analyze(audioBuffer, file.name, { difficulty: difficulty });
+          showImportProgress(false);
+          startSong(song);
+        } catch (e) {
+          showImportProgress(false);
+          alert('Error analyzing song: ' + e.message);
+        }
       }, 50);
     });
   }
@@ -411,6 +416,12 @@
   // --- Check song end ---
   function checkSongEnd(elapsed) {
     if (songFinished) return;
+    if (songNotes.length === 0) {
+      songFinished = true;
+      AudioEngine.stopBackingTrack();
+      setTimeout(showResults, 500);
+      return;
+    }
     var lastNote = songNotes[songNotes.length - 1];
     if (elapsed > lastNote.time + 1.5) {
       songFinished = true;
